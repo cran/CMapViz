@@ -19,7 +19,7 @@
 #' @usage
 #' bubble_plot(path, plot, enrichment, abs.enrich.cutoff=NULL, n.rep.cutoff=NULL ,
 #'         jittering=FALSE, return.gg.table= FALSE, output_path = NULL)
-#' @param path path of the excel file
+#' @param path path of the excel file (permutated results)
 #' @param plot what data to plot: molecules only (plot="molecules") or molecules by cell lines batch (plot="cell.lines")
 #' @param enrichment whether to plot positive or negative enrichment
 #' @param abs.enrich.cutoff minimum value of enrichment to include a batch
@@ -52,7 +52,7 @@ bubble_plot <- function(path,
 
     # import the specified data
     if (plot == "cell.lines") {
-        expected=c("rank","cmap.name.and.cell.line","mean","n","enrichment",
+        expected=c("rank","cmap name and cell line","mean","n","enrichment",
                 "p","specificity","percent non-null")
         sheet <- 2         #"by cmap name and cell line"
         table <- read_excel(path, sheet = sheet)
@@ -64,7 +64,7 @@ bubble_plot <- function(path,
                 -please use the original output excel table from the Connectivity Map (CMap)
                 -second-sheet column names shoud be: \n\t\t',paste(expected,collapse=', '))
         }
-        names <- table$cmap.name.and.cell.line
+        names <- table$`cmap name and cell line`
         names_and_cl <- colsplit(names, "-(?!.*-)", c("drug", "cell.line"))
         rank <- rep(1, dim(table)[1])
         df <- cbind(names_and_cl, table[3:dim(table)[2]], rank)

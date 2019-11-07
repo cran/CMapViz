@@ -8,7 +8,7 @@ bubble_plot(path, plot, enrichment, abs.enrich.cutoff=NULL, n.rep.cutoff=NULL ,
         jittering=FALSE, return.gg.table= FALSE, output_path = NULL)
 }
 \arguments{
-\item{path}{path of the excel file}
+\item{path}{path of the excel file (permutated results)}
 
 \item{plot}{what data to plot: molecules only (plot="molecules") or molecules by cell lines batch (plot="cell.lines")}
 
